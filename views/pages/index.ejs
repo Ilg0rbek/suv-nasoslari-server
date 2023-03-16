@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('../partials/header'); %></header>
+    <main>
+      <div
+        class="row justify-content-between"
+        style="width: 100%; margin: auto"
+      >
+        <% data.forEach(value => { %>
+        <div class="col-md-4 mt-4">
+          <div class="card" style="width: 21rem; height: 28rem">
+            <img
+              src="<%= value.photo %>"
+              class="card-img-top"
+              width="170px"
+              height="170px"
+              alt="<%= value.photo %>"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= value.little_desc %></h5>
+              <p class="card-text"><%- value.desc.slice(0,230) %>.....</p>
+              <div class="row">
+                <a
+                  href="/product/<%= value._id %>"
+                  class="btn btn-info ml-2 d-flex align-items-center"
+                  >Update
+                  <span class="material-symbols-outlined"> edit_square </span>
+                </a>
+                <a
+                  href="/delete/<%= value._id %>"
+                  class="btn btn-danger ml-2 d-flex align-items-center"
+                  >Delete
+                  <span class="material-symbols-outlined">
+                    delete_forever
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </main>
+  </body>
+</html>

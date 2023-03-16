@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('../partials/header'); %></header>
+    <main>
+      <div class="container card p-3" style="width: 30rem">
+        <% if (data.length !==0) { %>
+        <form
+          action="/update/<%= data._id %>"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-3">
+            <input
+              type="text"
+              value="<%= data.name %>"
+              class="form-control mb-3"
+              id="name"
+              name="name"
+              placeholder="Product name"
+            />
+            <input
+              type="text"
+              value="<%= data.little_desc %>"
+              class="form-control mb-3"
+              id="title"
+              name="little_desc"
+              placeholder="Product title"
+            />
+            <img
+              class="form-control mb-2"
+              style="height: 200px !important"
+              src="http://localhost:8080/<%= data.photo %>"
+              alt=""
+            />
+            <input value="" name="photo" type="file" class="mb-3" id="file" />
+          </div>
+          <div class="mb-3">
+            <textarea
+              class="form-control"
+              placeholder="Maxsulot haqida ma'lumot"
+              id="desc"
+              name="desc"
+            >
+<%= data.desc %>
+</textarea
+            >
+          </div>
+          <button type="submit" class="btn form-control btn-danger">
+            <%= title%>
+          </button>
+        </form>
+        <% } else { %>
+        <form
+          action="/product"
+          method="<%= method %>"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control mb-3"
+              id="name"
+              name="name"
+              placeholder="Product name"
+            />
+            <input
+              type="text"
+              class="form-control mb-3"
+              id="title"
+              name="little_desc"
+              placeholder="Product title"
+            />
+            <input name="photo" type="file" class="mb-3" id="file" />
+          </div>
+          <div class="mb-3">
+            <textarea
+              class="form-control"
+              placeholder="Maxsulot haqida ma'lumot"
+              id="desc"
+              name="desc"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn form-control btn-danger">
+            <%= title%>
+          </button>
+        </form>
+        <% } %>
+      </div>
+    </main>
+  </body>
+  <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+  <script>
+    ClassicEditor.create(document.querySelector("#desc")).catch((error) => {
+      console.error(error);
+    });
+  </script>
+</html>
